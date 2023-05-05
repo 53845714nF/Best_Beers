@@ -1,0 +1,23 @@
+.yellow-text {
+    color: #f9d094;
+}
+
+.yellow-background{
+    background-color: #f9d094;
+}
+
+.dark-text{
+    color: #2e2a24;
+}
+
+.dark-background{
+    background-color: #2e2a24;
+}
+
+.red-background{
+    background-color: #F52727;
+}
+
+.active{
+    color: aliceblue;
+}

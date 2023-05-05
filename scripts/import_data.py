@@ -1,5 +1,5 @@
 import csv
-from beers.models import Brewery, BreweryGeocode, Category, Style, AccuracyEnum, Beer
+from beers.models import *
 
 
 def run():
@@ -66,8 +66,7 @@ def run():
 
                 breweries_geocode = BreweryGeocode(id=brewery_geocode_id,
                                                    brewery_id=b_id,
-                                                   latitude=latitude,
-                                                   longitude=longitude,
+                                                   location=f'{latitude},{longitude}',
                                                    accuracy=accuracy_enum
                                                    )
                 breweries_geocode.save()

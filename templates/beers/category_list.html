@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a class="btn mt-4 ml-5 yellow-background" href="{% url 'category_create' %}" role="button">Create new Category</a>
+    <div class="mt-3">
+    {% for category in object_list %}
+        <ul class="list-group">
+            <li class="list-group-item yellow-text dark-background">
+                <a class="yellow-text" href="{% url 'category_update' pk=category.id %}">{{ category.name }}</a>
+                <a class="btn ml-2 yellow-background" href="{% url 'category_update' pk=category.id %}" role="button">✍</a>
+                <a class="btn ml-2 red-background" href="{% url 'category_delete' pk=category.id %}" role="button">✘</a>
+            </li>
+        </ul>
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,14 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+
 from beers.models import *
-
-
-def get_beers(request):
-    beers = Beer.objects.all().order_by('id')[:50]
-
-    return render(request, 'list_beer.html', {'page_title': 'Best Beers',
-                                              'beers': beers, })
-
 
 def get_breweries(request):
     breweries = Brewery.objects.all().order_by('id')[:50]
@@ -16,13 +8,10 @@ def get_breweries(request):
                                                    'breweries': breweries, })
 
 
-def get_categories(request):
-    categories = Category.objects.all().order_by('id')
-    return render(request, 'list_categories.html', {'page_title': 'Categories',
-                                                    'categories': categories, })
-
-
-def get_styles(request):
-    styles = Style.objects.all().order_by('id')
-    return render(request, 'list_styles.html', {'page_title': 'Styles',
-                                                'styles': styles, })
+def brewery(request, pk):
+    b = Brewery.objects.get(id=pk)
+    location = BreweryGeocode.objects.get(brewery_id=pk)
+    return render(request, 'brewery.html', {'page_title': 'Brewery',
+                                            'brewery': b,
+                                            'location': location,
+                                            })

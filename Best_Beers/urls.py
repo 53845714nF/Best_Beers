@@ -15,13 +15,74 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, reverse_lazy
+from django.views.generic import *
 from beers.views import *
+
 urlpatterns = [
+    # Default
+    path('', ListView.as_view(model=Beer,
+                              extra_context={'page_title': "List Beers"}), name='beer_read'),
+    # Admin
     path('admin/', admin.site.urls),
-    path('', get_beers, name='beer_list'),
-    path('beers/', get_beers, name='beer_list'),
-    path('breweries/', get_breweries, name='get_breweries'),
-    path('categories/', get_categories, name='get_categories'),
-    path('styles/', get_styles, name='get_styles'),
+
+    # CRUD Brewery
+    # path('breweries/', get_breweries, name='get_breweries'),
+    # path('brewery/<pk>', brewery, name='get_brewery'),
+    path('brewery/', CreateView.as_view(model=Brewery,
+                                        fields=['name', 'address', 'city', 'state', 'code',
+                                                'country', 'phone', 'website', 'description'],
+                                        success_url=reverse_lazy('brewery_read'),
+                                        extra_context={'page_title': "Create Brewery"}), name='brewery_create'),
+
+    # CRUD Beer
+    path('beer/', CreateView.as_view(model=Beer,
+                                     fields=['name', 'brewery_id', 'cat_id', 'style_id', 'alcohol_by_volume',
+                                             'description'],
+                                     success_url=reverse_lazy('beer_read'),
+                                     extra_context={'page_title': "Create Beer"}), name='beer_create'),
+    path('beers/', ListView.as_view(model=Beer,
+                                    paginate_by=100,
+                                    extra_context={'page_title': "List Beers"}), name='beer_read'),
+    path('beer/<pk>', UpdateView.as_view(model=Beer,
+                                         fields=['name', 'brewery_id', 'cat_id', 'style_id', 'alcohol_by_volume',
+                                                 'description'],
+                                         success_url=reverse_lazy('beer_read'),
+                                         extra_context={'page_title': "Update Beer"}), name='beer_update'),
+    path('beer/del/<pk>', DeleteView.as_view(model=Beer,
+                                             success_url=reverse_lazy('beer_read'),
+                                             extra_context={'page_title': "Delete Beer"}),
+         name='beer_delete'),
+
+    # CRUD Categories
+    path('category/', CreateView.as_view(model=Category,
+                                         fields=['name'],
+                                         success_url=reverse_lazy('category_read'),
+                                         extra_context={'page_title': "Create Category"}), name='category_create'),
+    path('categories/', ListView.as_view(model=Category,
+                                         extra_context={'page_title': "List Categories"}), name='category_read'),
+    path('category/<pk>', UpdateView.as_view(model=Category,
+                                             fields=['name'],
+                                             success_url=reverse_lazy('category_read'),
+                                             extra_context={'page_title': "Update Category"}), name='category_update'),
+    path('category/del/<pk>', DeleteView.as_view(model=Category,
+                                                 success_url=reverse_lazy('category_read'),
+                                                 extra_context={'page_title': "Delete Category"}),
+         name='category_delete'),
+
+    # CRUD Styles
+    path('style/', CreateView.as_view(model=Style,
+                                      fields=['name', 'cat_id'],
+                                      success_url=reverse_lazy('style_read'),
+                                      extra_context={'page_title': "Create Style"}), name='style_create'),
+    path('styles/', ListView.as_view(model=Style,
+                                     extra_context={'page_title': "List Styles"}), name='style_read'),
+    path('style/<pk>', UpdateView.as_view(model=Style,
+                                          fields=['name', 'cat_id'],
+                                          success_url=reverse_lazy('style_read'),
+                                          extra_context={'page_title': "Update Style"}), name='style_update'),
+    path('style/del/<pk>', DeleteView.as_view(model=Style,
+                                              success_url=reverse_lazy('style_read'),
+                                              extra_context={'page_title': "Delete Style"}),
+         name='style_delete'),
 ]

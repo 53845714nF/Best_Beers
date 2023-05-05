@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a class="btn mt-4 ml-5 yellow-background" href="{% url 'style_create' %}" role="button">Create new Style</a>
+    <div class="mt-3">
+    {% for style in object_list %}
+        <ul class="list-group">
+            <li class="list-group-item yellow-text dark-background">
+                <a class="yellow-text" href="{% url 'style_update' pk=style.id %}">{{ style.name }}</a>
+                <a class="btn ml-2 yellow-background" href="{% url 'style_update' pk=style.id %}" role="button" >✍</a>
+                <a class="btn ml-2 red-background" href="{% url 'style_delete' pk=style.id %}" role="button">✘</a>
+            </li>
+        </ul>
+    {% endfor %}
+    </div>
+{% endblock %}

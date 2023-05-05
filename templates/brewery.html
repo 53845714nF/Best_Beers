@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <br>
+    <h1 style="color: #f9d094;">{{ brewery.name }}</h1>
+    <h5 style="color: #f9d094;">Address: {{ brewery.address }} </h5>
+    <h5 style="color: #f9d094;">City: {{ brewery.city }}</h5>
+    <h5 style="color: #f9d094;">State: {{ brewery.state }}</h5>
+    <h5 style="color: #f9d094;">Code: {{ brewery.code }}</h5>
+    <h5 style="color: #f9d094;">Country: {{ brewery.country }}</h5>
+    <h5 style="color: #f9d094;">Phone: {{ brewery.phone }}</h5>
+    <h5 style="color: #f9d094;">Website: {{ brewery.website }}</h5>
+    <h5 style="color: #f9d094;">Description:</h5>
+    <p style="color: #f9d094;">{{ brewery.description }} </p>
+{% endblock %}

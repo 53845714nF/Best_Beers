@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <a class="btn mt-4 ml-5 yellow-background" href="{% url 'beer_create' %}" role="button">Create new Beer</a>
+    <div class="mt-3">
+        <table class="table table-striped">
+        <thead>
+            <tr class="yellow-text">
+                <th>Name</th>
+                <th>Brewery</th>
+                <th>Category</th>
+                <th>Style</th>
+                <th>Alcohol by Volume</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        {% for beer in object_list %}
+            <tr class="yellow-text">
+                <th scope="row"><a class="yellow-text" href="{% url 'beer_update' pk=beer.id %}"> {{ beer.name }}</a> </th>
+                <td>{{ beer.brewery_id }}</td>
+                <td>{{ beer.cat_id }}</td>
+                <td>{{ beer.style_id }}</td>
+                <td>{{ beer.alcohol_by_volume }}</td>
+                <td>
+                    <a class="btn ml-2 yellow-background" href="{% url 'beer_update' pk=beer.id %}" role="button"> ✍  </a>
+                    <a class="btn ml-2 red-background" href="{% url 'beer_delete' pk=beer.id %}" role="button"> ✘  </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+    <!-- Idea from https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html -->
+    <div class="d-flex justify-content-center">
+        {% if is_paginated %}
+          <ul class="pagination">
+            {% if page_obj.has_previous %}
+              <li><a class="yellow-text" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+              {% if page_obj.number == i %}
+                <li class="active ml-2"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li class="ml-2"><a class="yellow-text" href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+              <li><a class="yellow-text" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+    </div>
+
+{% endblock %}

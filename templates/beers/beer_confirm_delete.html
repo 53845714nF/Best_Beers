@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="mt-5 ml-5">
+        <h3 class="yellow-text">Delete Beer:</h3>
+        <form class="yellow-text" method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            {{ form }}
+            <input class="yellow-background" type="submit" value="Confirm">
+        </form>
+    </div>
+
+{% endblock %}

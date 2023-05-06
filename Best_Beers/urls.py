@@ -17,28 +17,30 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, reverse_lazy
 from django.views.generic import *
+
+from beers.forms import GeocodeForm
 from beers.views import *
 
 urlpatterns = [
     # Default
     path('', ListView.as_view(model=Beer,
+                              paginate_by=100,
                               extra_context={'page_title': "List Beers"}), name='beer_read'),
     # Admin
     path('admin/', admin.site.urls),
 
     # CRUD Brewery
-    # path('breweries/', get_breweries, name='get_breweries'),
-    # path('brewery/<pk>', brewery, name='get_brewery'),
-    path('brewery/', CreateView.as_view(model=Brewery,
-                                        fields=['name', 'address', 'city', 'state', 'code',
-                                                'country', 'phone', 'website', 'description'],
-                                        success_url=reverse_lazy('brewery_read'),
-                                        extra_context={'page_title': "Create Brewery"}), name='brewery_create'),
-
+    # TODO CU Brewery (no time)
+    path('breweries/', ListView.as_view(model=Brewery,
+                                        extra_context={'page_title': "List Breweries"}), name='brewery_read'),
+    path('brewery/<pk>', brewery, name='brewery_update'),
+    path('brewery/del/<pk>', DeleteView.as_view(model=Brewery,
+                                                success_url=reverse_lazy('brewery_read'),
+                                                extra_context={'page_title': "Delete Brewery"}), name='brewery_delete'),
     # CRUD Beer
     path('beer/', CreateView.as_view(model=Beer,
                                      fields=['name', 'brewery_id', 'cat_id', 'style_id', 'alcohol_by_volume',
-                                             'description'],
+                                             'description', 'ingredients'],
                                      success_url=reverse_lazy('beer_read'),
                                      extra_context={'page_title': "Create Beer"}), name='beer_create'),
     path('beers/', ListView.as_view(model=Beer,
@@ -46,7 +48,7 @@ urlpatterns = [
                                     extra_context={'page_title': "List Beers"}), name='beer_read'),
     path('beer/<pk>', UpdateView.as_view(model=Beer,
                                          fields=['name', 'brewery_id', 'cat_id', 'style_id', 'alcohol_by_volume',
-                                                 'description'],
+                                                 'description', 'ingredients'],
                                          success_url=reverse_lazy('beer_read'),
                                          extra_context={'page_title': "Update Beer"}), name='beer_update'),
     path('beer/del/<pk>', DeleteView.as_view(model=Beer,

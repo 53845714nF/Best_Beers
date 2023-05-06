@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="mt-3">
+        <table class="table">
+            <thead>
+                <tr class="yellow-text">
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>Website</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            {% for brewery in object_list %}
+                <tr class="yellow-text">
+                    <td><a class="yellow-text" href="{% url 'brewery_update' pk=brewery.id %}">{{ brewery.name }}</a></td>
+                    <td>{{ brewery.address }}</td>
+                    <td>{{ brewery.city }}</td>
+                    <td>{{ brewery.state }}</td>
+                     <td>{{ brewery.country }}</td>
+                    <td><a href="{{ brewery.website }}"> {{ brewery.website }}</a></td>
+                    <td>
+                    <a class="btn ml-2 red-background" href="{% url 'brewery_delete' pk=brewery.id %}" role="button">✘</a>
+                </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

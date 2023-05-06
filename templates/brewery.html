@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <br>
-    <h1 style="color: #f9d094;">{{ brewery.name }}</h1>
-    <h5 style="color: #f9d094;">Address: {{ brewery.address }} </h5>
-    <h5 style="color: #f9d094;">City: {{ brewery.city }}</h5>
-    <h5 style="color: #f9d094;">State: {{ brewery.state }}</h5>
-    <h5 style="color: #f9d094;">Code: {{ brewery.code }}</h5>
-    <h5 style="color: #f9d094;">Country: {{ brewery.country }}</h5>
-    <h5 style="color: #f9d094;">Phone: {{ brewery.phone }}</h5>
-    <h5 style="color: #f9d094;">Website: {{ brewery.website }}</h5>
-    <h5 style="color: #f9d094;">Description:</h5>
-    <p style="color: #f9d094;">{{ brewery.description }} </p>
+    <div class="mt-5 ml-3 yellow-text">
+        <h1>{{ brewery.name }}</h1>
+        <h5>Address: {{ brewery.address }} </h5>
+        <h5>City: {{ brewery.city }}</h5>
+        <h5>State: {{ brewery.state }}</h5>
+        <h5>Code: {{ brewery.code }}</h5>
+        <h5>Country: {{ brewery.country }}</h5>
+        <h5>Phone: {{ brewery.phone }}</h5>
+        <h5>Website: {{ brewery.website }}</h5>
+        <h5>Description:</h5>
+        <p>{{ brewery.description }} </p>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        {{ form.media }}
+        {{ form }}
+    </div>
 {% endblock %}

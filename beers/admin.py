@@ -6,4 +6,5 @@ admin.site.register(BreweryGeocode)
 admin.site.register(Category)
 admin.site.register(Style)
 admin.site.register(Beer)
+admin.site.register(Ingredient)
 

@@ -52,6 +52,13 @@ class Style(models.Model):
         return f'{self.name}'
 
 
+class Ingredient(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'{self.name}'
+
+
 class Beer(models.Model):
     name = models.CharField(max_length=50)
     brewery_id = models.ForeignKey(Brewery, on_delete=models.SET_NULL, null=True)
@@ -60,6 +67,7 @@ class Beer(models.Model):
     alcohol_by_volume = models.FloatField(null=False, default=0)
     description = models.CharField(max_length=1000)
     last_mod = models.DateTimeField('%Y-%m-%d %H:%M:%S', auto_now_add=True, null=True, blank=True)
+    ingredients = models.ManyToManyField(Ingredient)
 
     def __str__(self):
         return f'{self.name}'

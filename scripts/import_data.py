@@ -176,3 +176,12 @@ def run():
                         )
             beer.save()
     print('Info: Done with beer.')
+
+    print('Info: Start import ingredient.')
+    Ingredient.objects.all().delete()
+
+    ingredients = ['Hop', 'BarleyMalt', 'Yeast', 'Water']
+    for i in ingredients:
+        ingredient = Ingredient(name=i)
+        ingredient.save()
+    print('Info: Done with ingredient.')

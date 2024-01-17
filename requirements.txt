@@ -3,3 +3,6 @@ django-enumchoicefield
 django-location-field
 django-extensions
 django-bootstrap4
+six
+whitenoise
+gunicorn

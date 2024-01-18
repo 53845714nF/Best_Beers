@@ -1,11 +1,20 @@
 ⚠️ **This project is not intended to promote or encourage the consumption of alcohol. Alcohol is a drug. Regular drinking can make you dependent on it. Alcohol is leading risk factor for death, disease and disability.** ⚠️
 
-# Best_Beers
+# Best Beers
+[![Docker Image](https://github.com/53845714nF/Best_Beers/actions/workflows/main.yml/badge.svg)](https://github.com/53845714nF/Best_Beers/actions/workflows/main.yml)
+
 Welcome to Best Beers! This is a web application built using Django framework that helps you manage your beer inventory.
 With Best Beers, you can create, update and delete beers, view details about each beer.
 You can also view breweries and where they are located in the world.
 
 ## Installation
+
+### With Docker
+```bash
+docker run -p 8000:8000 ghcr.io/53845714nf/best_beers/best_beers:latest
+```
+
+### For Developers 
 To install Django Beer Manager, follow these steps:
  1. Clone the repository or download the zip file.
  2. Install Python3 and pip3 if they are not already installed.

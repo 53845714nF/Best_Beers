@@ -1,6 +1,8 @@
-⚠️ **This project is not intended to promote or encourage the consumption of alcohol. Alcohol is a drug. Regular drinking can make you dependent on it. Alcohol is leading risk factor for death, disease and disability.** ⚠️
-
 # Best Beers
+
+> [!WARNING]
+> This project is not intended to promote or encourage the consumption of alcohol. Alcohol is a drug. Regular drinking can make you dependent on it. Alcohol is leading risk factor for death, disease and disability.
+
 [![Docker Image](https://github.com/53845714nF/Best_Beers/actions/workflows/main.yml/badge.svg)](https://github.com/53845714nF/Best_Beers/actions/workflows/main.yml)
 
 Welcome to Best Beers! This is a web application built using Django framework that helps you manage your beer inventory.
